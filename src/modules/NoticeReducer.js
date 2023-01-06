@@ -20,6 +20,7 @@ export const getApiNoticeList = () => async dispatch => {
     dispatch({type: GET_LIST});
     try {
         const data = await api.getNoticeList();
+
         dispatch({type: GET_SUCCESS, payload: data})
     }catch (e){
         dispatch({type: GET_ERROR, payload: e, error: true})
@@ -41,7 +42,7 @@ const noticeHandler = handleActions(
               ...state.loading,
               GET_LIST: false,
           },
-          noticeList: action.payload.noticeList.data
+          noticeList: action.payload.data
         }),
         [GET_ERROR]: (state, action) => ({
             ...state,

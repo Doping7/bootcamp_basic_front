@@ -1,7 +1,10 @@
-const NoticeView = () => {
-    return(
+import React from "react";
+
+const NoticeView = ({noticeList}) => {
+    console.log(noticeList);
+    return (
         <>
-        <div>Hello, this is first Page</div>
+            <div>Hello, this is Notice Page</div>
         </>
     )
 }

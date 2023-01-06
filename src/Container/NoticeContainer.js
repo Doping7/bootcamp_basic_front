@@ -1,11 +1,18 @@
+import React, {useEffect} from 'react';
 import {connect} from "react-redux";
-import {getApiNoticeList} from "../Reducers/NoticeReducer";
 import NoticeView from "../View/Notice/NoticeView";
+import {getApiNoticeList} from "../modules/NoticeReducer";
 
 const NoticeContainer = ({noticeList, getApiNoticeList}) => {
 
+    useEffect(() => {
+        getApiNoticeList();
+    },[getApiNoticeList])
+
     return(
-        <NoticeView/>
+        <NoticeView
+            noticeList={noticeList}
+        />
     )
 }
 export default connect(
@@ -14,5 +21,5 @@ export default connect(
     }),
     {
         getApiNoticeList,
-    }
+    },
 )(NoticeContainer);

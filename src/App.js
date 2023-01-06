@@ -1,5 +1,5 @@
 import React from "react";
-import RoutePages from "./RoutePages";
+import RoutePages from "./View/RoutePages";
 
 function App() {
     return (
