@@ -31,3 +31,16 @@ export function getFaqList() {
         .catch(err => err)
 }
 
+export function getQnaList() {
+    return axiosInstance()
+        .post('api/qna/getQnAList')
+        .then(res => res)
+        .catch(err => err)
+}
+
+export function getMenuList() {
+    return axiosInstance()
+        .post('api/common/getSideMenuList')
+        .then(res => res)
+        .catch(err => err)
+}

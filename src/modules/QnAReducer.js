@@ -2,9 +2,9 @@ import {handleActions} from "redux-actions";
 import * as api from "./api";
 
 // Action Type
-const GET_LIST = 'notice/GET_LIST';
-const GET_SUCCESS = 'notice/GET_SUCCESS';
-const GET_ERROR = 'notice/GET_ERROR'
+const GET_LIST = 'qna/GET_LIST';
+const GET_SUCCESS = 'qna/GET_SUCCESS';
+const GET_ERROR = 'qna/GET_ERROR'
 
 
 //초기 State
@@ -12,21 +12,21 @@ const initialState = {
     loading:{
         GET_LIST: false,
     },
-    noticeList: []
+    qnaList: []
 }
 
 // dispatch method
-export const getApiNoticeList = () => async dispatch => {
+export const getApiQnaList = () => async dispatch => {
     dispatch({type: GET_LIST});
     try {
-        const data = await api.getNoticeList();
+        const data = await api.getQnaList();
         dispatch({type: GET_SUCCESS, payload: data})
     }catch (e){
         dispatch({type: GET_ERROR, payload: e, error: true})
     }
 };
 
-const noticeHandler = handleActions(
+const qnaHandler = handleActions(
     {
         [GET_LIST]: state => ({
             ...state,
@@ -41,7 +41,7 @@ const noticeHandler = handleActions(
               ...state.loading,
               GET_LIST: false,
           },
-          noticeList: action.payload.data
+          qnaList: action.payload.data
         }),
         [GET_ERROR]: (state, action) => ({
             ...state,
@@ -54,4 +54,4 @@ const noticeHandler = handleActions(
     initialState,
 );
 
-export default noticeHandler;
+export default qnaHandler;

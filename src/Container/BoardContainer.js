@@ -6,12 +6,13 @@ import {useEffect} from "react";
 
 const BoardContainer = ({boardList, getApiBoardList}) => {
     useEffect(() => {
-        getApiBoardList()
+        getApiBoardList();
     }, [getApiBoardList])
 
-
     return(
-        <BoardView boardList={boardList}/>
+        <BoardView
+            boardList={boardList}
+        />
     )
 }
 export default connect(
@@ -20,5 +21,5 @@ export default connect(
     }),
     {
         getApiBoardList,
-    }
+    },
 )(BoardContainer);

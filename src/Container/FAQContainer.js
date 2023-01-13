@@ -8,8 +8,8 @@ const FAQContainer = ({faqList, getApiFaqList}) => {
     useEffect(() => {
         getApiFaqList();
     }, [getApiFaqList])
-    return(
-        <FAQView faqList={faqList}/>
+    return (
+            <FAQView faqList={faqList}/>
     )
 }
 export default connect(

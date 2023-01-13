@@ -1,12 +1,12 @@
 import React from "react";
-import {AppBar, Box, Button, Grid, IconButton, Paper, TextField, Toolbar, Tooltip, Typography} from "@mui/material";
+import {AppBar, Box, Button, Grid, Paper, Toolbar, Typography} from "@mui/material";
 import {DataGrid} from "@mui/x-data-grid";
-import NoticeColumn from "../util/gridColumns/NoticeColumn";
-import NoticeRows from "../util/gridRows/NoticeRows";
+import QnARows from "../util/gridRows/QnARows";
+import QnAColumn from "../util/gridColumns/QnAColumn";
 
-const NoticeView = ({noticeList}) => {
+const QnAView = ({qnaList}) => {
 
-    return (
+    return(
         <Paper sx={{maxWidth: 'auto', margin: 'auto', overflow: 'hidden'}}>
             <AppBar
                 position="static"
@@ -18,7 +18,7 @@ const NoticeView = ({noticeList}) => {
                     <Grid container spacing={2} alignItems="center">
                         <Grid item>
                             <Typography sx={{my: 5}} fontWeight={'bold'} color="text.secondary" align="center">
-                                Notice List
+                                QnA List
                             </Typography>
                         </Grid>
                         <Grid item xs>
@@ -31,8 +31,8 @@ const NoticeView = ({noticeList}) => {
 
                 <Box sx={{height: 'calc(100vh - 200px)'}}>
                     <DataGrid
-                        rows={NoticeRows(noticeList)}
-                        columns={NoticeColumn()}
+                        rows={QnARows(qnaList)}
+                        columns={QnAColumn()}
                         pageSize={10}
                         rowsPerPageOptions={[10]}
                     />
@@ -41,4 +41,4 @@ const NoticeView = ({noticeList}) => {
         </Paper>
     )
 }
-export default NoticeView
+export default QnAView

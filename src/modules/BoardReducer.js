@@ -20,6 +20,7 @@ export const getApiBoardList = () => async dispatch => {
     dispatch({type: GET_LIST});
     try {
         const data = await api.getBoardList();
+        console.log(data);
         dispatch({type: GET_SUCCESS, payload: data})
     }catch (e){
         dispatch({type: GET_ERROR, payload: e, error: true})
