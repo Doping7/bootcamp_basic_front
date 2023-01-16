@@ -7,6 +7,7 @@ const BoardRows = (boardData) => {
     boardData.map((item, itemIdx) => {
         let row = {
             id: itemIdx + 1,
+            dataId: item.id,
             title: item.title,
             user: item.user.userName,
             createDate: item.createDate,

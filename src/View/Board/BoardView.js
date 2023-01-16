@@ -3,8 +3,16 @@ import {AppBar, Box, Button, Grid, Paper, Toolbar, Typography} from "@mui/materi
 import {DataGrid} from "@mui/x-data-grid";
 import BoardColumn from "../util/gridColumns/BoardColumn";
 import BoardRows from "../util/gridRows/BoardRows";
+import {useNavigate, useParams} from "react-router-dom";
 
 const BoardView = ({boardList}) => {
+
+    const navigate = useNavigate();
+
+    const onCellClick = (e) => {
+        console.log(e.row)
+        navigate(`/board/${e.row.dataId}`);
+    }
 
 
     return(
@@ -36,6 +44,7 @@ const BoardView = ({boardList}) => {
                         columns={BoardColumn()}
                         pageSize={10}
                         rowsPerPageOptions={[10]}
+                        onCellClick={(e) => {onCellClick(e)}}
                     />
                 </Box>
             </AppBar>

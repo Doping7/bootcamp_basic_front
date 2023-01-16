@@ -4,6 +4,7 @@ import boardHandler from "./BoardReducer";
 import faqHandler from "./FAQReducer";
 import menuHandler from "./MenuReducer";
 import qnaHandler from "./QnAReducer";
+import userHandler from "./UserReducer";
 
 const rootReducer = combineReducers({
     noticeHandler,
@@ -11,5 +12,6 @@ const rootReducer = combineReducers({
     faqHandler,
     menuHandler,
     qnaHandler,
+    userHandler
 });
 export default rootReducer;

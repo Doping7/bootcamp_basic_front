@@ -1,11 +1,9 @@
 import {connect} from "react-redux";
 import {getApiMenuList} from "../modules/MenuReducer";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import Menu from "../View/Menu/Menu";
 
-const MenuContainer = ({menuList, getApiMenuList}) => {
-
-    const [currentMenu, setCurrentMenu] = useState('');
+const MenuContainer = ({menuList, getApiMenuList, logout}) => {
 
     useEffect(() => {
         getApiMenuList()
@@ -13,7 +11,7 @@ const MenuContainer = ({menuList, getApiMenuList}) => {
 
     return (
         <>
-            <Menu menuList={menuList} setCurrentMenu={setCurrentMenu}/>
+            <Menu menuList={menuList} logout={logout}/>
         </>
     )
 }

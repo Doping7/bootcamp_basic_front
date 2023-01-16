@@ -11,6 +11,20 @@ const axiosInstance = () => {
     return _axios;
 }
 
+export function getUserData(data) {
+    return axiosInstance()
+        .post('api/user/getUserData', data)
+        .then(res => res)
+        .catch(err => err)
+}
+
+export function regUser(data) {
+    return axiosInstance()
+        .post('api/user/regUser', data)
+        .then(res => res)
+        .catch(err => err)
+}
+
 export function getNoticeList() {
     return axiosInstance()
         .post('api/notice/getNoticeList')
@@ -20,6 +34,13 @@ export function getNoticeList() {
 export function getBoardList() {
     return axiosInstance()
         .post('api/board/getBoardList')
+        .then(res => res)
+        .catch(err => err)
+}
+
+export function getBoard(dataId) {
+    return axiosInstance()
+        .post('api/board/getBoard', dataId)
         .then(res => res)
         .catch(err => err)
 }
