@@ -11,24 +11,25 @@ import {
 import React, {useEffect} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getApiBoard} from "../../modules/BoardReducer";
+import {getApiQna} from "../../modules/QnAReducer";
 
-const BoardDetailView = () => {
+const QnADetailView = () => {
     //const userData = JSON.parse(localStorage.getItem('userData'));
-    const board = useSelector(state => state.boardHandler.board);
+    const qna = useSelector(state => state.qnaHandler.qna);
     const dispatch = useDispatch();
     const param = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(getApiBoard(param.dataId))
+        dispatch(getApiQna(param.dataId))
     }, [param, dispatch])
 
     useEffect(() => {
-    }, [board])
+        console.log(qna);
+    }, [qna])
 
     const goBack = () => {
-        navigate('/board')
+        navigate('/qna')
     }
 
 
@@ -44,7 +45,7 @@ const BoardDetailView = () => {
                 <Container>
                     <Card>
                         <CardHeader
-                            title={board.title}
+                            title={qna.question}
                             sx={{backgroundColor: '#333333', color: '#ffffff'}}
                         />
                         <Divider/>
@@ -65,10 +66,9 @@ const BoardDetailView = () => {
                                     }}
                                     xs={12}
                                 >
-                                    <Typography>
-                                        {board.contents}
-                                    </Typography>
-
+                                        <Typography>
+                                            {qna.answer}
+                                        </Typography>
                                 </Grid>
                             </Grid>
                         </CardContent>
@@ -108,4 +108,4 @@ const BoardDetailView = () => {
         </>
     )
 }
-export default BoardDetailView;
+export default QnADetailView;

@@ -1,4 +1,3 @@
-import moment from "moment";
 
 const QnARows = (qnaData) => {
 
@@ -7,8 +6,9 @@ const QnARows = (qnaData) => {
     qnaData.map((item, itemIdx) => {
         let row = {
             id: itemIdx + 1,
+            dataId: item.id,
             question: item.question,
-            quesUser: item.quesUser.userName,
+            quesUser: item.quesUser.userId,
             regDate: item.regDate,
             answered: item.answer ? 'O': 'X',
         };

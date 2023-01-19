@@ -3,9 +3,17 @@ import {AppBar, Box, Button, Grid, Paper, Toolbar, Typography} from "@mui/materi
 import {DataGrid} from "@mui/x-data-grid";
 import QnARows from "../util/gridRows/QnARows";
 import QnAColumn from "../util/gridColumns/QnAColumn";
+import {useNavigate} from "react-router-dom";
 
 const QnAView = ({qnaList}) => {
+    const navigate = useNavigate()
 
+    const onCellClick = (e) => {
+        navigate(`/qna/${e.row.dataId}`);
+    }
+    const goWritePage =()=> {
+        navigate('/qna/new');
+    }
     return(
         <Paper sx={{maxWidth: 'auto', margin: 'auto', overflow: 'hidden'}}>
             <AppBar
@@ -24,20 +32,25 @@ const QnAView = ({qnaList}) => {
                         <Grid item xs>
                         </Grid>
                         <Box sx={{marginTop: 3}}>
-                            <Button  variant={"outlined"} size={'small'} color={'inherit'}>Write</Button>
+                            <Button variant={"contained"} size={'small'} onClick={goWritePage} sx={{
+                                marginRight: 1,
+                                backgroundColor: '#000000',
+                                color: '#ffffff'
+                            }}>Write</Button>
                         </Box>
                     </Grid>
                 </Toolbar>
-
-                <Box sx={{height: 'calc(100vh - 200px)'}}>
-                    <DataGrid
-                        rows={QnARows(qnaList)}
-                        columns={QnAColumn()}
-                        pageSize={10}
-                        rowsPerPageOptions={[10]}
-                    />
-                </Box>
             </AppBar>
+
+            <Box sx={{height: 'calc(100vh - 200px)'}}>
+                <DataGrid
+                    rows={QnARows(qnaList)}
+                    columns={QnAColumn()}
+                    pageSize={10}
+                    rowsPerPageOptions={[10]}
+                    onCellClick={(e) => onCellClick(e)}
+                />
+            </Box>
         </Paper>
     )
 }

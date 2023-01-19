@@ -1,43 +1,35 @@
 import React, {useEffect, useState} from "react";
 import RoutePages from "./View/RoutePages";
-import MenuContainer from "./Container/MenuContainer";
-import LoginPage from "./View/LoginPage";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
+
 
 function App() {
     const _userData = useSelector(state => state.userHandler.userData);
     const [userData, setUserData] = useState();
+    const loginData = JSON.parse(localStorage.getItem('userData'))
+    const navigate = useNavigate();
 
     useEffect(() => {
-        setUserData(_userData);
-    },[_userData])
+        if (!userData) {
+            if (_userData)
+                setUserData(_userData);
+            else if (loginData) {
+                setUserData(loginData);
+            } else {
+                navigate('/login')
+            }
+        }
+    }, [_userData, loginData, userData, navigate])
 
-
-    const logout = () => {
-        localStorage.clear();
-        setUserData(undefined);
-    }
 
     return (
         <>
-            {userData &&
-                <div>
-                    <div>
-                        <MenuContainer logout={logout}/>
-                    </div>
-                    <div>
-                        <RoutePages/>
-                    </div>
-                </div>
-            }
-            {!userData &&
-                <div>
-                    <LoginPage/>
-                </div>
-            }
+            <RoutePages userData={userData} setUserData={setUserData}/>
         </>
 
     );
+
 }
 
 export default App;

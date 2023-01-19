@@ -7,17 +7,16 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {regUser} from "../modules/api";
-import {useNavigate} from "react-router-dom";
 import {getApiUserData} from "../modules/UserReducer";
 import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
-const LoginPage = ({}) => {
-    const _userData = useSelector(state => state.userHandler.userData)
-    const navigate = useNavigate();
+const LoginPage = () => {
     const [mod, setMod] = useState(false);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [loginData, setLoginData] = useState({
         userId: '',
@@ -67,16 +66,20 @@ const LoginPage = ({}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const result = await dispatch(getApiUserData(loginData))
-            if(result) {
+            if(!result.status) {
                 alert('ID 또는 비밀번호를 잘못 입력하셨습니다. 확인 후 다시 시도해주세요.')
             } else {
+                localStorage.setItem('userData', JSON.stringify({
+                    userId: result.data.userId,
+                    userName: result.data.userName,
+                    auth: result.data.auth
+                }));
                 navigate('/notice');
             }
     }
 
     if (mod === false) {
         return (
-
             <div style={{height: '100vh', width: '100vw'}}>
                 <Container component="main" maxWidth="xs">
                     <CssBaseline/>

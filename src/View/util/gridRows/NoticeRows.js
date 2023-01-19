@@ -5,8 +5,9 @@ const NoticeRows = (noticeData) => {
     noticeData.map((item, itemIdx) => {
         let row = {
             id: itemIdx + 1,
+            dataId: item.id,
             title: item.title,
-            user: item.user.userName
+            user: item.user.userId
         };
         rows.push(row)
     })

@@ -3,7 +3,8 @@ import * as api from "./api";
 
 // Action Type
 const GET_LIST = 'board/GET_LIST';
-const GET_SUCCESS = 'board/GET_SUCCESS';
+const GET_LIST_SUCCESS = 'board/GET_LIST_SUCCESS';
+const GET_BOARD_SUCCESS = 'board/GET_BOARD_SUCCESS';
 const GET_ERROR = 'board/GET_ERROR'
 
 
@@ -12,7 +13,8 @@ const initialState = {
     loading:{
         GET_LIST: false,
     },
-    boardList: []
+    boardList: [],
+    board:{}
 }
 
 // dispatch method
@@ -21,11 +23,20 @@ export const getApiBoardList = () => async dispatch => {
     try {
         const data = await api.getBoardList();
         console.log(data);
-        dispatch({type: GET_SUCCESS, payload: data})
+        dispatch({type: GET_LIST_SUCCESS, payload: data})
     }catch (e){
         dispatch({type: GET_ERROR, payload: e, error: true})
     }
 };
+export const getApiBoard = (dataId) => async dispatch => {
+    dispatch({type:GET_LIST});
+    try {
+        const data = await api.getBoard(dataId);
+        dispatch({type: GET_BOARD_SUCCESS, payload: data})
+    }catch (e) {
+        dispatch({type:GET_ERROR,payload:e, error: true})
+    }
+}
 
 const boardHandler = handleActions(
     {
@@ -36,13 +47,21 @@ const boardHandler = handleActions(
                 GET_LIST: true,
             },
         }),
-        [GET_SUCCESS]: (state, action) => ({
+        [GET_LIST_SUCCESS]: (state, action) => ({
           ...state,
           loading:{
               ...state.loading,
               GET_LIST: false,
           },
           boardList: action.payload.data
+        }),
+        [GET_BOARD_SUCCESS]: (state, action) => ({
+            ...state,
+            loading:{
+                ...state.loading,
+                GET_LIST: false,
+            },
+            board: action.payload.data
         }),
         [GET_ERROR]: (state, action) => ({
             ...state,

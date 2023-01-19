@@ -9,7 +9,7 @@ const BoardRows = (boardData) => {
             id: itemIdx + 1,
             dataId: item.id,
             title: item.title,
-            user: item.user.userName,
+            user: item.user?.userId,
             createDate: item.createDate,
             viewCount: item.viewCount
         };

@@ -21,6 +21,7 @@ export const getApiUserData = (loginData) => async dispatch => {
     try {
         const data = await api.getUserData(loginData);
         dispatch({type: GET_SUCCESS, payload: data})
+        return data;
     }catch (e){
         dispatch({type: GET_ERROR, payload: e, error: true})
         return e;

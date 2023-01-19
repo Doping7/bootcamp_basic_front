@@ -11,24 +11,25 @@ import {
 import React, {useEffect} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {getApiBoard} from "../../modules/BoardReducer";
+import {getApiNotice} from "../../modules/NoticeReducer";
 
-const BoardDetailView = () => {
+const NoticeDetailView = () => {
     //const userData = JSON.parse(localStorage.getItem('userData'));
-    const board = useSelector(state => state.boardHandler.board);
+    const notice = useSelector(state => state.noticeHandler.notice);
     const dispatch = useDispatch();
     const param = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(getApiBoard(param.dataId))
+        dispatch(getApiNotice(param.dataId))
     }, [param, dispatch])
 
     useEffect(() => {
-    }, [board])
+        console.log(notice);
+    }, [notice])
 
     const goBack = () => {
-        navigate('/board')
+        navigate('/notice')
     }
 
 
@@ -44,7 +45,7 @@ const BoardDetailView = () => {
                 <Container>
                     <Card>
                         <CardHeader
-                            title={board.title}
+                            title={notice.title}
                             sx={{backgroundColor: '#333333', color: '#ffffff'}}
                         />
                         <Divider/>
@@ -66,7 +67,7 @@ const BoardDetailView = () => {
                                     xs={12}
                                 >
                                     <Typography>
-                                        {board.contents}
+                                        {notice.contents}
                                     </Typography>
 
                                 </Grid>
@@ -108,4 +109,4 @@ const BoardDetailView = () => {
         </>
     )
 }
-export default BoardDetailView;
+export default NoticeDetailView;
