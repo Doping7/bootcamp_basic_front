@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 const QnAView = ({qnaList}) => {
     const navigate = useNavigate()
 
+    console.log(qnaList);
     const onCellClick = (e) => {
         navigate(`/qna/${e.row.dataId}`);
     }

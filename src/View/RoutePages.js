@@ -11,6 +11,7 @@ import NoticeDetailView from "./Notice/NoticeDetailView";
 import QnADetailView from "./QnA/QnADetailView";
 import CreateBoardView from "./Board/CreateBoardView";
 import CreateNoticeView from "./Notice/CreateNoticeView";
+import CreateQnAView from "./QnA/CreateQnAView";
 
 const routePages = ({userData, setUserData}) => {
 
@@ -47,6 +48,7 @@ const routePages = ({userData, setUserData}) => {
                         <Route path="/faq" element={<FAQContainer/>}/>
                         <Route path="/qna">
                             <Route path="/qna/:dataId" element={<QnADetailView/>}/>
+                            <Route path="/qna/new" element={<CreateQnAView/>}/>
                             <Route path="" element={<QnAContainer/>}/>
                         </Route>
                     </Routes>

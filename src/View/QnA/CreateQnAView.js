@@ -9,18 +9,19 @@ import {
 } from "@mui/material";
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {regNotice} from "../../modules/api";
+import {regQna} from "../../modules/api";
 import {useSelector} from "react-redux";
 
 const CreateQnAView = () => {
     const navigate = useNavigate()
     const userData = useSelector(state => state.userHandler.userData);
     const [newQnA, setNewQnA] = useState({
-        question:'',
-        contents:'',
-        user: userData
+        questionTitle:'',
+        questionContents:'',
+        quesUser: userData
     })
 
+    console.log(userData);
     const handleChange = e => {
         setNewQnA({
             ...newQnA,
@@ -33,7 +34,7 @@ const CreateQnAView = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const result = await regNotice(newQnA);
+        const result = await regQna(newQnA);
         if (result.status === 200) {
             navigate('/qna')
         } else {
@@ -80,9 +81,9 @@ const CreateQnAView = () => {
 
                 <Container sx={{marginLeft: 4, py: 5}}>
                     <Box component='form'>
-                        <Input sx={{display: 'flex', width: '90vw', marginBottom: 3}} name='title'
+                        <Input sx={{display: 'flex', width: '90vw', marginBottom: 3}} name='questionTitle'
                                placeholder={'Title'} onChange={handleChange}/>
-                        <TextField multiline rows={20} sx={{display: 'flex', width: '90vw'}} name='contents'
+                        <TextField multiline rows={20} sx={{display: 'flex', width: '90vw'}} name='questionContents'
                                    placeholder={'Contents'} onChange={handleChange}/>
                     </Box>
                 </Container>

@@ -1,4 +1,3 @@
-
 const QnARows = (qnaData) => {
 
     const rows= [];
@@ -7,7 +6,7 @@ const QnARows = (qnaData) => {
         let row = {
             id: itemIdx + 1,
             dataId: item.id,
-            question: item.question,
+            questionTitle: item.questionTitle,
             quesUser: item.quesUser.userId,
             regDate: item.regDate,
             answered: item.answer ? 'O': 'X',

@@ -14,7 +14,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getApiBoard} from "../../modules/BoardReducer";
 
 const BoardDetailView = () => {
-    //const userData = JSON.parse(localStorage.getItem('userData'));
+    const userData = JSON.parse(localStorage.getItem('userData'));
     const board = useSelector(state => state.boardHandler.board);
     const dispatch = useDispatch();
     const param = useParams();
@@ -80,8 +80,8 @@ const BoardDetailView = () => {
                                 p: 2
                             }}
                         >
-
-                            <div>
+                            <Box>
+                                {board.user.userId !== userData.userId &&
                                 <Button
                                     color="inherit"
                                     size='small'
@@ -90,6 +90,7 @@ const BoardDetailView = () => {
                                 >
                                     Edit
                                 </Button>
+                                }
                                 <Button
                                     color="inherit"
                                     size='small'
@@ -98,9 +99,7 @@ const BoardDetailView = () => {
                                 >
                                     Back
                                 </Button>
-
-                            </div>
-
+                            </Box>
                         </Box>
                     </Card>
                 </Container>

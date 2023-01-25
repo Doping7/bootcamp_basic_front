@@ -86,6 +86,19 @@ export function getQna(dataId) {
         .catch(err => err)
 }
 
+export function regQna(data) {
+    return axiosInstance
+        .post('api/qna/regQnA', data)
+        .then(res => res)
+        .catch(err => err)
+}
+export function modQna(data) {
+    return axiosInstance
+        .post('api/qna/modQnA', data)
+        .then(res => res)
+        .catch(err => err)
+}
+
 export function getMenuList() {
     return axiosInstance
         .post('api/common/getSideMenuList')
