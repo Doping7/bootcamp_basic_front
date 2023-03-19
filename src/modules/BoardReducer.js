@@ -10,11 +10,18 @@ const GET_ERROR = 'board/GET_ERROR'
 
 //초기 State
 const initialState = {
-    loading:{
+    loading: {
         GET_LIST: false,
     },
     boardList: [],
-    board:{}
+    board: {
+        title: '',
+        contents: '',
+        user: {
+            userId: '',
+            userName: ''
+        }
+    }
 }
 
 // dispatch method
@@ -22,21 +29,20 @@ export const getApiBoardList = () => async dispatch => {
     dispatch({type: GET_LIST});
     try {
         const data = await api.getBoardList();
-        console.log(data);
         dispatch({type: GET_LIST_SUCCESS, payload: data})
     }catch (e){
         dispatch({type: GET_ERROR, payload: e, error: true})
     }
 };
 export const getApiBoard = (dataId) => async dispatch => {
-    dispatch({type:GET_LIST});
+    dispatch({type: GET_LIST});
     try {
         const data = await api.getBoard(dataId);
         dispatch({type: GET_BOARD_SUCCESS, payload: data})
-    }catch (e) {
-        dispatch({type:GET_ERROR,payload:e, error: true})
+    }catch (e){
+        dispatch({type: GET_ERROR, payload: e, error: true})
     }
-}
+};
 
 const boardHandler = handleActions(
     {
@@ -61,7 +67,14 @@ const boardHandler = handleActions(
                 ...state.loading,
                 GET_LIST: false,
             },
-            board: action.payload.data
+            board: {
+                title: action.payload.data.title,
+                contents: action.payload.data.contents,
+                user: {
+                    userId: action.payload.data.user.userId,
+                    userName: action.payload.data.user.userName
+                }
+            }
         }),
         [GET_ERROR]: (state, action) => ({
             ...state,

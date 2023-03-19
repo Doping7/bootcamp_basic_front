@@ -2,7 +2,7 @@ const NoticeRows = (noticeData) => {
 
     const rows= [];
 
-    noticeData.map((item, itemIdx) => {
+    noticeData.forEach((item, itemIdx) => {
         let row = {
             id: itemIdx + 1,
             dataId: item.id,

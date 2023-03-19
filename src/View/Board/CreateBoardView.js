@@ -11,6 +11,7 @@ import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {regBoard} from "../../modules/api";
 import {useSelector} from "react-redux";
+import MUIRichTextEditor from "mui-rte";
 
 const CreateBoardView = () => {
     const navigate = useNavigate()
@@ -18,6 +19,7 @@ const CreateBoardView = () => {
     const [newBoard, setNewBoard] = useState({
         title:'',
         contents:'',
+        file: null,
         user: userData
     })
 
@@ -39,6 +41,10 @@ const CreateBoardView = () => {
         } else {
             alert('게시물 작성 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.')
         }
+    }
+
+    const save = data => {
+        console.log(data);
     }
 
     return (
@@ -83,7 +89,8 @@ const CreateBoardView = () => {
                         <Input sx={{display: 'flex', width: '90vw', marginBottom: 3}} name='title'
                                placeholder={'Title'} onChange={handleChange}/>
                         <TextField multiline rows={20} sx={{display: 'flex', width: '90vw'}} name='contents'
-                                   placeholder={'Contents'} onChange={handleChange}/>
+                                   placeholder={'Text Contents'} onChange={handleChange}/>
+                        <TextField type='file' sx={{paddingTop: 5, display:'flex', width:'90vw'}} name='file'/>
                     </Box>
                 </Container>
             </Box>

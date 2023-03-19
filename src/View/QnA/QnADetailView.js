@@ -24,11 +24,11 @@ const QnADetailView = () => {
     const [mode, setMode] = useState(false);
     const [answer, setAnswer] = useState({
         id: qna.id,
-        questionTitle:qna.questionTitle,
-        questionContents:qna.questionContents,
+        questionTitle: qna.questionTitle,
+        questionContents: qna.questionContents,
         quesUser: qna.quesUser,
         ansUser: userData,
-        regDate:qna.regDate,
+        regDate: qna.regDate,
         answer: ''
     })
 
@@ -43,11 +43,11 @@ const QnADetailView = () => {
         setAnswer({
             ...answer,
             id: qna.id,
-            questionTitle:qna.questionTitle,
-            questionContents:qna.questionContents,
+            questionTitle: qna.questionTitle,
+            questionContents: qna.questionContents,
             quesUser: qna.quesUser,
             ansUser: userData,
-            regDate:qna.regDate,
+            regDate: qna.regDate,
             answer: e.target.value
         })
     }
@@ -141,7 +141,8 @@ const QnADetailView = () => {
                                         <Typography fontWeight='bold'>
                                             A :
                                         </Typography>
-                                        <TextField name='answer' onChange={(e) => handleChange(e)} multiline rows={10} sx={{width: '100vh'}} placeholder='Answer Here'/>
+                                        <TextField name='answer' onChange={(e) => handleChange(e)} multiline rows={10}
+                                                   sx={{width: '100vh'}} placeholder='Answer Here'/>
                                     </Grid>
                                 }
                             </Grid>
@@ -156,14 +157,17 @@ const QnADetailView = () => {
                         >
                             {mode === false &&
                                 <Box>
-                                    <Button
-                                        size='small'
-                                        variant="outlined"
-                                        sx={{marginRight: 3, backgroundColor: '#000000', color: '#ffffff'}}
-                                        onClick={() => setMode(true)}
-                                    >
-                                        Answer
-                                    </Button>
+                                    {_userData.userId === 'admin' &&
+                                        <Button
+                                            size='small'
+                                            variant="outlined"
+                                            sx={{marginRight: 3, backgroundColor: '#000000', color: '#ffffff'}}
+                                            onClick={() => setMode(true)}
+                                        >
+                                            Answer
+                                        </Button>
+                                    }
+                                    {qna.quesUser.userId === _userData.userId &&
                                     <Button
                                         color="inherit"
                                         size='small'
@@ -172,6 +176,7 @@ const QnADetailView = () => {
                                     >
                                         Edit
                                     </Button>
+                                    }
                                     <Button
                                         color="inherit"
                                         size='small'

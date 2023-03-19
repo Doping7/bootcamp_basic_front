@@ -2,7 +2,7 @@ const QnARows = (qnaData) => {
 
     const rows= [];
 
-    qnaData.map((item, itemIdx) => {
+    qnaData.forEach((item, itemIdx) => {
         let row = {
             id: itemIdx + 1,
             dataId: item.id,

@@ -5,8 +5,8 @@ import BoardColumn from "../util/gridColumns/BoardColumn";
 import BoardRows from "../util/gridRows/BoardRows";
 import {useNavigate} from "react-router-dom";
 
-const BoardView = ({boardList}) => {
 
+const BoardView = ({boardList}) => {
     const navigate = useNavigate();
 
     const onCellClick = (e) => {

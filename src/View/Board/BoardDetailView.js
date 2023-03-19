@@ -15,17 +15,19 @@ import {getApiBoard} from "../../modules/BoardReducer";
 
 const BoardDetailView = () => {
     const userData = JSON.parse(localStorage.getItem('userData'));
-    const board = useSelector(state => state.boardHandler.board);
+    const board = useSelector(state => state.boardHandler.board)
     const dispatch = useDispatch();
     const param = useParams();
     const navigate = useNavigate();
 
-    useEffect(() => {
+
+    useEffect( () => {
         dispatch(getApiBoard(param.dataId))
     }, [param, dispatch])
 
+
     useEffect(() => {
-    }, [board])
+    },[board])
 
     const goBack = () => {
         navigate('/board')
@@ -81,7 +83,7 @@ const BoardDetailView = () => {
                             }}
                         >
                             <Box>
-                                {board.user.userId !== userData.userId &&
+                                {board.user.userId === userData.userId &&
                                 <Button
                                     color="inherit"
                                     size='small'

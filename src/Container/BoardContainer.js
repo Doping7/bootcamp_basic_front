@@ -17,7 +17,7 @@ const BoardContainer = ({boardList, getApiBoardList}) => {
 }
 export default connect(
     ({boardHandler}) => ({
-        boardList: boardHandler.boardList
+        boardList: boardHandler.boardList,
     }),
     {
         getApiBoardList,

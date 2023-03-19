@@ -2,7 +2,7 @@ const BoardRows = (boardData) => {
 
     const rows= [];
 
-    boardData.map((item, itemIdx) => {
+    boardData.forEach((item, itemIdx) => {
         let row = {
             id: itemIdx + 1,
             dataId: item.id,

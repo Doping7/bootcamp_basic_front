@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import RoutePages from "./View/RoutePages";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {createTheme} from "@mui/material";
+import {ThemeProvider} from "@mui/styles";
 
 
 function App() {
@@ -22,10 +24,13 @@ function App() {
         }
     }, [_userData, loginData, userData, navigate])
 
+    const theme = createTheme()
 
     return (
         <>
-            <RoutePages userData={userData} setUserData={setUserData}/>
+            <ThemeProvider theme={theme}>
+                <RoutePages userData={userData} setUserData={setUserData}/>
+            </ThemeProvider>
         </>
 
     );

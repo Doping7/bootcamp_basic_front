@@ -14,7 +14,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getApiNotice} from "../../modules/NoticeReducer";
 
 const NoticeDetailView = () => {
-    //const userData = JSON.parse(localStorage.getItem('userData'));
+    const userData = JSON.parse(localStorage.getItem('userData'));
     const notice = useSelector(state => state.noticeHandler.notice);
     const dispatch = useDispatch();
     const param = useParams();
@@ -83,14 +83,16 @@ const NoticeDetailView = () => {
                         >
 
                             <div>
-                                <Button
-                                    color="inherit"
-                                    size='small'
-                                    variant="outlined"
-                                    sx={{marginRight: 3}}
-                                >
-                                    Edit
-                                </Button>
+                                {userData.userId === 'admin' &&
+                                    <Button
+                                        color="inherit"
+                                        size='small'
+                                        variant="outlined"
+                                        sx={{marginRight: 3}}
+                                    >
+                                        Edit
+                                    </Button>
+                                }
                                 <Button
                                     color="inherit"
                                     size='small'

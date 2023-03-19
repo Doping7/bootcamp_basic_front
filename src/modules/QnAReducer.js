@@ -14,7 +14,18 @@ const initialState = {
         GET_LIST: false,
     },
     qnaList: [],
-    qna:{}
+    qna:{
+        id: '',
+        questionTitle: '',
+        questionContents: '',
+        quesUser: {
+            userId: '',
+            userName: ''
+        },
+        ansUser: '',
+        regDate: '',
+        answer: ''
+    }
 }
 
 // dispatch method
@@ -61,7 +72,19 @@ const qnaHandler = handleActions(
                 ...state.loading,
                 GET_LIST: false,
             },
-            qna: action.payload.data
+            qna: {
+                ...state.qna,
+                id: action.payload.data.id,
+                questionTitle: action.payload.data.questionTitle,
+                questionContents: action.payload.data.questionContents,
+                quesUser: {
+                    userId: action.payload.data.quesUser.userId,
+                    userName: action.payload.data.quesUser.userName
+                },
+                ansUser: action.payload.data.ansUser,
+                regDate: action.payload.data.regDate,
+                answer: action.payload.data.answer
+            }
         }),
         [GET_ERROR]: (state, action) => ({
             ...state,
