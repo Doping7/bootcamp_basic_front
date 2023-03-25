@@ -10,15 +10,14 @@ import {
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {regQna} from "../../modules/api";
-import {useSelector} from "react-redux";
 
 const CreateQnAView = () => {
     const navigate = useNavigate()
-    const userData = useSelector(state => state.userHandler.userData);
+    const userData = JSON.parse(localStorage.getItem('userData'));
     const [newQnA, setNewQnA] = useState({
         questionTitle:'',
         questionContents:'',
-        quesUser: userData
+        quesUser:userData,
     })
 
     console.log(userData);
@@ -27,6 +26,7 @@ const CreateQnAView = () => {
             ...newQnA,
             [e.target.name]: e.target.value
         })
+        console.log(newQnA)
     }
     const goBack = () => {
         navigate('/qna')
